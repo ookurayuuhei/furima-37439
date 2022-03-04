@@ -24,13 +24,14 @@ has_many :purchases
 | Column              | Type      | Options     |
 | ------------------- | --------- | ----------- |
 | items_name          | string    | null: false |
-| explanation         | string    | null: false |
+| explanation         | text      | null: false |
 | category_id         | integer   | null: false |
 | status_id           | integer   | null: false |
 | delivery_fee_id     | integer   | null: false |
 | shipping_area _id   | integer   | null: false |
 | shipping_days_id    | integer   | null: false |     
 | price               | integer   | null: false |
+| user                |references | null: false, foreign_key: true |
 
 ###Association
 
@@ -43,30 +44,35 @@ has_one :purchase
 | Column             | Type   | Option       |
 |------------------- | ------ | -------------|
 | comment            | text   | null: false  |
+| user                |references | null: false, foreign_key: true |
+| item                |references | null: false, foreign_key: true |
 
 ###Association
 
 belongs_to :user
 belongs_to :items
 
-##purchase テーブル
+##purchases テーブル
 
-| Column             | Type   | Option       |
-|------------------- | ------ | -------------|
-|                    |        |              |
+| Column             | Type        | Option       |
+|------------------- | ------      | -------------|
+| user               | references  | null: false, foreign_key: true   |
+| item               | references  | null: false, foreign_key: true   |
 
 ###Association
 belongs_to :user
 belongs_to :item
+has_one :address
 
-##adress テーブル
+##addresses テーブル
 
 | Column             | Type   | Option       |
 |------------------- | ------ | -------------|
 | post_number        | string | null: false  |
-| prefectures        | string | null: false  |
+| shipping_are       | string | null: false  |
 | city               | string | null: false  |
 | address            | string | null: false  |
 | build              | string |              |
 | phone_number       | string | null: false  |
 
+belongs_to :purchase
