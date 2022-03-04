@@ -66,13 +66,14 @@ has_one :address
 
 ##addresses テーブル
 
-| Column             | Type   | Option       |
-|------------------- | ------ | -------------|
-| post_number        | string | null: false  |
-| shipping_are       | string | null: false  |
-| city               | string | null: false  |
-| address            | string | null: false  |
-| build              | string |              |
-| phone_number       | string | null: false  |
+| Column             | Type    | Option       |
+|------------------- | ------- | -------------|
+| post_number        | string  | null: false  |
+| shipping_are_id    | integer | null: false  |
+| city               | string  | null: false  |
+| address            | string  | null: false  |
+| build              | string  |              |
+| phone_number       | string  | null: false  |
+| purchase           | references  | null: false, foreign_key: true   |
 
 belongs_to :purchase
