@@ -28,7 +28,7 @@ has_many :purchases
 | category_id         | integer   | null: false |
 | status_id           | integer   | null: false |
 | delivery_fee_id     | integer   | null: false |
-| shipping_area _id   | integer   | null: false |
+| shipping_area_id    | integer   | null: false |
 | shipping_days_id    | integer   | null: false |     
 | price               | integer   | null: false |
 | user                |references | null: false, foreign_key: true |
