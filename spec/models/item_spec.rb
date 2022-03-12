@@ -57,9 +57,9 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price は半角数字のみ使用できます")
         end
         it 'priceが半角数字以外では出品できない' do
-        @item.price = '1000'
+        @item.price = '１０００'
         @item.valid?
-        expect(@item.errors.full_messages).to include("User must exist")
+        expect(@item.errors.full_messages).to include("Price is not a number")
         end
       end
     end
