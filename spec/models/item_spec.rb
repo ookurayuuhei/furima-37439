@@ -54,7 +54,7 @@ RSpec.describe Item, type: :model do
         it 'priceが空では出品できない' do
         @item.price = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price は半角数字のみ使用できます")
+        expect(@item.errors.full_messages).to include("Price can't be blank")
         end
         it 'priceが半角数字以外では出品できない' do
         @item.price = '１０００'
