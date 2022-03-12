@@ -1,7 +1,11 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :user
-  belongs_to_active_hash :delivery_fee
+  belongs_to :delivery_fee
+  belongs_to :category
+  belongs_to :shipping_area
+  belongs_to :shipping_days
+  belongs_to :status
   has_one_attached :image
 
 
