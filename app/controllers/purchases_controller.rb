@@ -4,10 +4,11 @@ class PurchasesController < ApplicationController
   before_action :set_item
 
   def index
-    @purchase__address = PurchaseAddress.new
+    @purchase_address = PurchaseAddress.new
   end
 
   def create
+    @item = Item.find(params[:item_id])
     @purchase_address = PurchaseAddress.new(purchase_params)
     if @purchase_address.valid?
       pay_item
@@ -25,9 +26,11 @@ class PurchasesController < ApplicationController
   end
 
   def move_to_index
-    if user_signed_in? && current_user.id == @item.user.id
+    item = Item.find(params[:item_id])
+    if user_signed_in? && current_user.id == item.user.id
       redirect_to root_path
     end
+  end
 end
 
   def set_item
@@ -41,5 +44,4 @@ end
         card: @purchase_shipping_address.token,
         currency: 'jpy'
       )
-  end
 end
