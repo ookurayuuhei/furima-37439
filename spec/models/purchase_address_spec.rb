@@ -16,10 +16,6 @@ RSpec.describe PurchaseAddress, type: :model do
         @purchase.build = ''
         expect(@purchase).to be_valid
       end
-      it '郵便番号が半角数字と半角のハイフンを含んだ正しい形式であれば登録できる' do
-        @purchase.post_number = '123-4567'
-        expect(@purchase.errors.full_messages).to include
-      end
     end
     context '購入ができない時' do
       it '郵便番号が空では登録できないこと' do
@@ -47,7 +43,7 @@ RSpec.describe PurchaseAddress, type: :model do
         @purchase.valid?
         expect(@purchase.errors.full_messages).to include('Post number is invalid')
       end
-      it '都道府県を選択していないと登録できないこと' do
+      it '都道府県が空では登録できないこと' do
         @purchase.shipping_area_id = 1
         @purchase.valid?
         expect(@purchase.errors.full_messages).to include("Shipping area can't be blank")
