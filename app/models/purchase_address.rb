@@ -5,12 +5,12 @@ class PurchaseAddress
     validates :post_number, format: { with: /\A[0-9]{3}-[0-9]{4}\z/ }
     validates :city
     validates :address
-    validates :phone_number, format: {with: /[0-9]{10,11}/}
+    validates :phone_number, numericality: { only_integer: true }, length: { in: 1..11 }
     validates :user_id
     validates :item_id
     validates :token
   end
-  validates :shipping_area_id, numericality: { other_than: 1, message: "can' be blank"}
+  validates :shipping_area_id, numericality: { other_than: 1, message: "can't be blank"}
 
   def save
     purchase = Purchase.create(user_id: user_id, item_id: item_id)

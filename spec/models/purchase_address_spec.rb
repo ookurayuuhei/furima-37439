@@ -28,30 +28,29 @@ RSpec.describe PurchaseAddress, type: :model do
         expect(@purchase.errors.full_messages).to include("Post number can't be blank")
       end
       it '郵便番号に全角文字が含まれている場合登録できないこと' do
-        @purchase.postal_code = '123-ああああ'
+        @purchase.post_number = '123-ああああ'
         @purchase.valid?
-        expect(@purchase.errors.full_messages).to include('Postal code is invalid')
+        expect(@purchase.errors.full_messages).to include('Post number is invalid')
       end
       it '郵便番号に半角文字が含まれている場合登録できない' do
-        @purchase.postal_code = '123-ｱｱｱｱ'
+        @purchase.post_number = '123-ｱｱｱｱ'
         @purchase.valid?
-        expect(@purchase.errors.full_messages).to include('Postal code is invalid')
+        expect(@purchase.errors.full_messages).to include('Post number is invalid')
       end
       it '郵便番号にハイフン以外の記号が含まれている場合登録できない' do
-        @purchase.postal_code = '123-.,:@'
+        @purchase.post_number = '123-.,:@'
         @purchase.valid?
-        expect(@purchase.errors.full_messages).to include('Postal code is invalid')
+        expect(@purchase.errors.full_messages).to include('Post number is invalid')
       end
       it '郵便番号にハイフンが含まれていない場合登録できない' do
-        @purchase.postal_code = '1234567'
+        @purchase.post_number = '1234567'
         @purchase.valid?
-        expect(@purchase.errors.full_messages).to include('Postal code is invalid')
+        expect(@purchase.errors.full_messages).to include('Post number is invalid')
       end
       it '都道府県を選択していないと登録できないこと' do
-        @purchase.prefecture_id = 1
+        @purchase.shipping_area_id = 1
         @purchase.valid?
-        binding.pry
-        expect(@purchase.errors.full_messages).to include("Prefecture must be other than 1")
+        expect(@purchase.errors.full_messages).to include("Shipping area can't be blank")
       end
       it '市町村区が空では登録できないこと' do
         @purchase.city = ''
@@ -59,9 +58,9 @@ RSpec.describe PurchaseAddress, type: :model do
         expect(@purchase.errors.full_messages).to include("City can't be blank")
       end
       it '番地が空では登録できないこと' do
-        @purchase.addresses = ''
+        @purchase.address = ''
         @purchase.valid?
-        expect(@purchase.errors.full_messages).to include("Addresses can't be blank")
+        expect(@purchase.errors.full_messages).to include("Address can't be blank")
       end
       it '電話番号が12桁以上の場合登録できないこと' do
         @purchase.phone_number = '123456789011'
