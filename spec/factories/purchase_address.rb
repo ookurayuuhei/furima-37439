@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :purchase_address do
     post_number          { '123-4567' }
-    shipping_area_id        { 2 }
+    shipping_area_id        { '2' }
     city                 { '東京都' }
     address              { '1-1' }
     build                { 'aaaa' }
