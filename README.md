@@ -69,7 +69,7 @@ has_one :address
 | Column             | Type    | Option       |
 |------------------- | ------- | -------------|
 | post_number        | string  | null: false  |
-| shipping_are_id    | integer | null: false  |
+| shipping_area_id    | integer | null: false  |
 | city               | string  | null: false  |
 | address            | string  | null: false  |
 | build              | string  |              |
