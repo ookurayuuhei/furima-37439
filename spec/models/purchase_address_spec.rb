@@ -58,10 +58,15 @@ RSpec.describe PurchaseAddress, type: :model do
         @purchase.valid?
         expect(@purchase.errors.full_messages).to include("Address can't be blank")
       end
-      it '電話番号が12桁以上の場合登録できないこと' do
+      it '電話番号が12桁以上では登録できないこと' do
         @purchase.phone_number = '123456789011'
         @purchase.valid?
         expect(@purchase.errors.full_messages).to include('Phone number is too long (maximum is 11 characters)')
+      end
+      it '電話番号が9桁以下では登録できないこと' do
+        @purchase.phone_number = '123456789'
+        @purchase.valid?
+        expect(@purchase.errors.full_messages).to include('Phone number is too short (minimum is 10 characters)')
       end
       it '電話番号に全角文字が含まれている場合登録できないこと' do
         @purchase.phone_number = '12345ああああ'

@@ -5,7 +5,7 @@ class PurchaseAddress
     validates :post_number, format: { with: /\A[0-9]{3}-[0-9]{4}\z/ }
     validates :city
     validates :address
-    validates :phone_number, numericality: { only_integer: true }, length: { in: 1..11 }
+    validates :phone_number, numericality: { only_integer: true }, length: { in: 10..11 }
     validates :user_id
     validates :item_id
     validates :token
