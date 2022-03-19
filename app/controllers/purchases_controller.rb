@@ -28,10 +28,10 @@ class PurchasesController < ApplicationController
 
   def move_to_index
     item = Item.find(params[:item_id])
-    if  current_user.id == item.user.id
+    if  current_user.id == item.user.id || !@item.purchase.nil?
       redirect_to root_path
     end
-end
+  end
 
   def set_item
     @item = Item.find(params[:item_id])
